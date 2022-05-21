@@ -1,16 +1,15 @@
 import React from "react";
 import { useSelector } from "react-redux";
-import { weatherSelector } from "../redux/weatherSlice";
+import { weatherSelector } from "../../redux/weatherSlice";
 import moment from "moment";
 
 function WeatherCard() {
   const citydata = useSelector(weatherSelector);
 
-  console.log(citydata);
   return (
     <>
       {citydata.name && (
-        <div className="card text-center cardblue">
+        <div id="card" className="card text-center cardblue">
           <div className="card-header">{`${
             citydata?.name.includes("Province")
               ? citydata.name.split(" ")[0]
