@@ -9,8 +9,8 @@ export const fetchCity = createAsyncThunk("weather/fetchCity", async (city) => {
   return res.data;
 });
 
-export const quotesSlice = createSlice({
-  name: "quotes",
+export const weatherSlice = createSlice({
+  name: "weather",
   initialState: {
     APIkey: sessionStorage.getItem("APIkey") || "",
     weatherData: [],
@@ -19,7 +19,10 @@ export const quotesSlice = createSlice({
   },
   reducers: {
     cleanWeatherData: (state, action) => {
-      state.weatherData = [];
+      state.weatherData = "";
+    },
+    cleanErrorMessage: (state, action) => {
+      state.error = "";
     },
   },
   extraReducers: {
@@ -41,6 +44,6 @@ export const weatherSelector = (state) => state.weather.weatherData;
 export const statusSelector = (state) => state.weather.status;
 export const errorSelector = (state) => state.weather.error;
 
-export const { cleanWeatherData } = quotesSlice.actions;
+export const { cleanWeatherData, cleanErrorMessage } = weatherSlice.actions;
 
-export default quotesSlice.reducer;
+export default weatherSlice.reducer;

@@ -44,7 +44,11 @@ function WeatherCard() {
                 </li>
                 <li>
                   <span>Deniz Seviyesi:</span>
-                  <span>{citydata.main.sea_level + "hPa"}</span>
+                  <span>
+                    {citydata.main.sea_level
+                      ? citydata.main.sea_level + "hPa"
+                      : ""}
+                  </span>
                 </li>
                 <li>
                   <span>Maksimum Sıcaklık:</span>

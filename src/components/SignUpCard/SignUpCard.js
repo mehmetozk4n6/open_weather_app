@@ -5,6 +5,7 @@ import {
   fetchCity,
   errorSelector,
   statusSelector,
+  cleanErrorMessage,
 } from "../../redux/weatherSlice";
 
 function SignUpCard() {
@@ -24,8 +25,9 @@ function SignUpCard() {
   useEffect(() => {
     if (status === "succeeded") {
       navigate("city");
+      dispatch(cleanErrorMessage());
     }
-  }, [status, navigate]);
+  }, [status, navigate, dispatch]);
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -34,33 +36,37 @@ function SignUpCard() {
   };
 
   return (
-    <div className="signUpCard">
-      <form onSubmit={(e) => handleSubmit(e)}>
-        <p>
-          <i>
-            Lütfen https://openweathermap.org/ sitesi için geçerli bir Api Key
-            giriniz.
-          </i>
-        </p>
-        <label htmlFor="API">
-          <b>API Key:</b>
-        </label>
-        <input
-          id="API"
-          onChange={(e) => setApikey(e.target.value)}
-          placeholder="KEY"
-          className="mb-4"
-        />
-        {error && (
-          <>
-            <h4 style={{ color: "red" }}>! {error}</h4>
-            <h4 style={{ color: "red" }}>! HATALI API KEY</h4>
-          </>
-        )}
-        <br />
-        <button type="submit">Giriş</button>
-      </form>
-    </div>
+    <>
+      <div className="signUpCard">
+        <form onSubmit={(e) => handleSubmit(e)} id="form">
+          <p>
+            <i>
+              Lütfen https://openweathermap.org/ sitesi için geçerli bir Api Key
+              giriniz.
+            </i>
+          </p>
+          <label htmlFor="API">
+            <b>API Key:</b>
+          </label>
+          <input
+            id="API"
+            onChange={(e) => setApikey(e.target.value)}
+            placeholder="KEY"
+            className="mb-4"
+            aria-label="api-input"
+          />
+          {error && (
+            <>
+              <h4 style={{ color: "red" }}>! HATALI API KEY</h4>
+            </>
+          )}
+          <br />
+          <button type="submit" id="submit">
+            Giriş
+          </button>
+        </form>
+      </div>
+    </>
   );
 }
 
