@@ -20,6 +20,7 @@ test("full app rendering/navigating", async () => {
     </Provider>
   );
   // verify page content for expected route
+
   expect(screen.getByText(/geçerli/i)).toBeInTheDocument();
 });
 
@@ -41,9 +42,11 @@ test("landing on a bad page", () => {
   const history = createMemoryHistory();
   history.push("/some/bad/route");
   render(
-    <Router location={history.location} navigator={history}>
-      <App />
-    </Router>
+    <Provider store={store}>
+      <Router location={history.location} navigator={history}>
+        <App />
+      </Router>
+    </Provider>
   );
 
   expect(screen.getByText(/Not Found/i)).toBeInTheDocument();

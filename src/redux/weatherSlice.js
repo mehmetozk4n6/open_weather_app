@@ -4,7 +4,7 @@ import axios from "axios";
 export const fetchCity = createAsyncThunk("weather/fetchCity", async (city) => {
   let apikey = sessionStorage.getItem("APIkey");
   const res = await axios(
-    `${process.env.REACT_APP_API_BASE_ENDPOINT}?q=${city}&appid=${apikey}`
+    `https://api.openweathermap.org/data/2.5/weather?q=${city}&appid=${apikey}`
   );
   return res.data;
 });
