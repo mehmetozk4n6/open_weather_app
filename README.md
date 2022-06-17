@@ -1,5 +1,3 @@
-### APIKey = d7631044ba4bf4bb3aa5844cecf97978
-
 ### Docker üzerinden çalıştırmak için:
 
 1.docker pull mehmetozk4n6/open_weather_app:1.0.0
